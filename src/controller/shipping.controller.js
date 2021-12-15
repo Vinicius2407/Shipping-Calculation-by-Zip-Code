@@ -1,6 +1,6 @@
 import { getDistanceBetween } from "../helpers/getDistanceBetween.js";
 import { calculateShippingCost } from "../helpers/calculateShippingCost.js";
-import { axios } from "../helpers/axios.js";
+
 
 class ShippingController {
   async generateXML(request, response) {
