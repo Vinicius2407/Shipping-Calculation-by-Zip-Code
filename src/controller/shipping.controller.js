@@ -1,6 +1,8 @@
 import { getDistanceBetween } from "../helpers/getDistanceBetween.js";
 import { calculateShippingCost } from "../helpers/calculateShippingCost.js";
+import axios from "axios";
 
+const tokenValue = process.env.TOKEN;
 
 class ShippingController {
   async generateXML(request, response) {
@@ -15,20 +17,20 @@ class ShippingController {
 
     try {
       let distance = 0;
-      // try{
-      //   console.log("Chegou aqui");
-      //   distance = await getDistanceBetween(origins, destinations);
-      // } catch {
-      //   const result = await axios.get(`https://api.pagar.me/1/zipcodes/${destinations}`);
-      //   const newDestinations = `${result.data.street}, ${result.data.city}, ${result.data.zipcode}, ${result.data.state}`;
-      //   distance = await getDistanceBetween(origins, [newDestinations]);
-      // }
-      distance = await getDistanceBetween(origins, destinations);
-      console.log(distance);
+      try{
+        console.log("Chegou aqui");
+        distance = await getDistanceBetween(origins, destinations);
+      } catch {
+        const result = await axios.get(`https://api.pagar.me/1/zipcodes/${cep_destino}`);
+        const newDestinations = `${result.data.street}, ${result.data.city}, ${result.data.zipcode}, ${result.data.state}`;
+        distance = await getDistanceBetween(origins, [newDestinations]);
+      }
+      // distance = await getDistanceBetween(origins, destinations);
+      // console.log(distance);
       const shippingCost = calculateShippingCost(distance);
 
       if (shippingCost !== 0) {
-        if (token == 10517031){
+        if (token === tokenValue){
           const xml = `
             <cotacao>
               <resultado>         
