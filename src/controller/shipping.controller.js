@@ -1,6 +1,6 @@
 import { getDistanceBetween } from "../helpers/getDistanceBetween.js";
 import { calculateShippingCost } from "../helpers/calculateShippingCost.js";
-import { axios } from "axios";
+
 
 class ShippingController {
   async generateXML(request, response) {
@@ -15,15 +15,15 @@ class ShippingController {
 
     try {
       let distance = 0;
-      try{
-        console.log("Chegou aqui");
-        distance = await getDistanceBetween(origins, destinations);
-      } catch {
-        const result = await axios.get(`https://api.pagar.me/1/zipcodes/${destinations}`);
-        const newDestinations = `${result.data.street}, ${result.data.city}, ${result.data.zipcode}, ${result.data.state}`;
-        distance = await getDistanceBetween(origins, [newDestinations]);
-      }
-
+      // try{
+      //   console.log("Chegou aqui");
+      //   distance = await getDistanceBetween(origins, destinations);
+      // } catch {
+      //   const result = await axios.get(`https://api.pagar.me/1/zipcodes/${destinations}`);
+      //   const newDestinations = `${result.data.street}, ${result.data.city}, ${result.data.zipcode}, ${result.data.state}`;
+      //   distance = await getDistanceBetween(origins, [newDestinations]);
+      // }
+      distance = await getDistanceBetween(origins, destinations);
       const shippingCost = calculateShippingCost(distance);
 
       if (shippingCost !== 0) {
