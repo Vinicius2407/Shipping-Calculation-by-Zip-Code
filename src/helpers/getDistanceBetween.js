@@ -21,7 +21,6 @@ export async function getDistanceBetween(origins, destinations) {
             if (element.status === "OK") {
               return resolve(element.distance.value);
             } else {
-              console.log(element);
               return reject("Erro interno ao calcular distância");
             }
           }

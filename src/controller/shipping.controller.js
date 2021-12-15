@@ -18,7 +18,6 @@ class ShippingController {
     try {
       let distance = 0;
       try{
-        console.log("Chegou aqui");
         distance = await getDistanceBetween(origins, destinations);
       } catch {
         const result = await axios.get(`https://api.pagar.me/1/zipcodes/${cep_destino}`);
@@ -70,7 +69,6 @@ class ShippingController {
       return response.status(400).json({ message: "Distância excedeu o limite do delivery" });
     } catch (error) {
       // TODO: save error to file
-      console.error("Error", error);
       return response.status(500).json({ message: "Erro interno no servidor, tente novamente" });
     }
   }
