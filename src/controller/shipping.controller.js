@@ -23,7 +23,7 @@ class ShippingController {
             <transportadora>Pagar Online</transportadora>        
             <servico>(Cartão de Crédito ou PIX)</servico>         
             <transporte>Moto</transporte>         
-            <valor>10,99</valor>         
+            <valor>10.99</valor>         
             <peso></peso>         
             <prazo_min>1 Minuto</prazo_min>         
             <prazo_max>2 Horas</prazo_max>         
@@ -40,7 +40,7 @@ class ShippingController {
             <transportadora>Pagar na Entrega</transportadora>        
             <servico>(Dinheiro ou Cartão)</servico>         
             <transporte>Moto</transporte>         
-            <valor>10,99</valor>         
+            <valor>10.99</valor>         
             <peso></peso>         
             <prazo_min>1 Minuto</prazo_min>         
             <prazo_max>2 Horas</prazo_max>         
