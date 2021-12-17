@@ -30,7 +30,7 @@ class ShippingController {
       
       const resultado = await cepVerification(cep_destino);
       if(resultado !== 0){
-        shippingCost === 10.99;
+        shippingCost = 10.99;
       }
 
       if (shippingCost !== 0) {
