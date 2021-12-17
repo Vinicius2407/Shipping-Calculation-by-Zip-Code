@@ -31,7 +31,6 @@ class ShippingController {
       const resultado = await cepVerification(cep_destino);
       if(resultado === 1) shippingCost = 10.99;
       
-
       if (shippingCost !== 0) {
         if (token === tokenValue){
           const xml = `
