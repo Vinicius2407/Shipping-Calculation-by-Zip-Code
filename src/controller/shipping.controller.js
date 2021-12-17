@@ -30,6 +30,7 @@ class ShippingController {
       
       const resultado = cepVerification(cep_destino);
       if(resultado === 1) {
+        console.log(resultado)
         const valorNovo = "10.99";
         shippingCost = valorNovo;
       }
