@@ -4,7 +4,7 @@ import { cepVerification } from "../helpers/cepVerification.js";
 import axios from "axios";
 
 let tokenValue = process.env.TOKEN;
-let cep_avenida_das_cataratas = process.env.AVENIDA
+
 class ShippingController {
   async generateXML(request, response) {
     const { token, cep, cep_destino } = request.query;
@@ -29,7 +29,7 @@ class ShippingController {
       const shippingCost = calculateShippingCost(distance);
       
       const resultado = cepVerification(cep_destino);
-      if(resultado == 1) shippingCost = 10.99;
+      if(resultado === 1) shippingCost = 10.99;
       
       if (shippingCost !== 0) {
         if (token === tokenValue){
