@@ -14,7 +14,7 @@ class ShippingController {
     const origins = [cep.replace(/\D/g, "")];
     const destinations = [cep_destino.replace(/\D/g, "")];
   
-    if (destinations === 85853000) {
+    if (cep_destino === 85853000) {
       if (token === tokenValue){
         const xml = `
           <cotacao>
