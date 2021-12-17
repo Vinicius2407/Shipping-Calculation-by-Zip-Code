@@ -28,7 +28,7 @@ class ShippingController {
       console.log(distance);
       const shippingCost = calculateShippingCost(distance);
       
-      const resultado = await cepVerification(cep_destino);
+      const resultado = cepVerification(cep_destino);
       if(resultado == 1) shippingCost = 10.99;
       
       if (shippingCost !== 0) {
