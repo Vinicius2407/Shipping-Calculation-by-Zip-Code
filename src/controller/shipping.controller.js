@@ -2,8 +2,8 @@ import { getDistanceBetween } from "../helpers/getDistanceBetween.js";
 import { calculateShippingCost } from "../helpers/calculateShippingCost.js";
 import axios from "axios";
 
-const tokenValue = process.env.TOKEN;
-
+let tokenValue = process.env.TOKEN;
+let cep_avenida_das_cataratas = process.env.AVENIDA
 class ShippingController {
   async generateXML(request, response) {
     const { token, cep, cep_destino } = request.query;
@@ -14,7 +14,7 @@ class ShippingController {
     const origins = [cep.replace(/\D/g, "")];
     const destinations = [cep_destino.replace(/\D/g, "")];
   
-    if (cep_destino === 85853000) {
+    if (cep_destino === cep_avenida_das_cataratas) {
       if (token === tokenValue){
         const xml = `
           <cotacao>
