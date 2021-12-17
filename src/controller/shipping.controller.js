@@ -29,8 +29,10 @@ class ShippingController {
       const shippingCost = calculateShippingCost(distance);
       
       const resultado = cepVerification(cep_destino);
-      if(resultado === 1) shippingCost = 10.99;
-      
+      if(resultado === 1) {
+        const valorNovo = 10.99;
+        shippingCost = valorNovo;
+      }
       if (shippingCost !== 0) {
         if (token === tokenValue){
           const xml = `
