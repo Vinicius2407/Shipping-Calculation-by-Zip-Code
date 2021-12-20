@@ -60,8 +60,6 @@ class ShippingController {
           const newDestinations = `${result.data.street}, ${result.data.city}, ${result.data.zipcode}, ${result.data.state}`;
           distance = await getDistanceBetween(origins, [newDestinations]);
         }
-        // distance = await getDistanceBetween(origins, destinations);
-        console.log(distance);
         const shippingCost = calculateShippingCost(distance);
 
         if (shippingCost !== 0) {
