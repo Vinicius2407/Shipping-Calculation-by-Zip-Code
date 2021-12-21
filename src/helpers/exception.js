@@ -1,4 +1,4 @@
-let falls_street = process.env.AVENIDA;
+let falls_street = process.env.FALLS_STREET;
 let center_street = process.env.CENTER_STREET;
 
 export async function exception(destiny_cep){
