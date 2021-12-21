@@ -1,9 +1,9 @@
 import { getDistanceBetween } from "../helpers/getDistanceBetween.js";
 import { calculateShippingCost } from "../helpers/calculateShippingCost.js";
+import { exception } from "../helpers/exception.js";
 import axios from "axios";
 
 let tokenValue = process.env.TOKEN;
-let cep_avenida_das_cataratas = process.env.AVENIDA
 class ShippingController {
   async generateXML(request, response) {
     const { token, cep, cep_destino } = request.query;
@@ -13,9 +13,10 @@ class ShippingController {
 
     const origins = [cep.replace(/\D/g, "")];
     const destinations = [cep_destino.replace(/\D/g, "")];
-  
-    if (cep_destino === cep_avenida_das_cataratas) {
-      if (token === tokenValue){
+
+    const exclusiveDestination = await exception(cep_destino);
+
+    if (exclusiveDestination !== 0) {
         const xml = `
           <cotacao>
             <resultado>         
@@ -23,7 +24,7 @@ class ShippingController {
             <transportadora>Pagar Online</transportadora>        
             <servico>(Cartão de Crédito ou PIX)</servico>         
             <transporte>Moto</transporte>         
-            <valor>10.99</valor>         
+            <valor>${exclusiveDestination}</valor>         
             <peso></peso>         
             <prazo_min>1 Minuto</prazo_min>         
             <prazo_max>2 Horas</prazo_max>         
@@ -32,24 +33,6 @@ class ShippingController {
         `;
 
         return response.status(200).send(xml);
-      } else {
-        const xml = `
-          <cotacao>
-            <resultado>         
-            <codigo></codigo>         
-            <transportadora>Pagar na Entrega</transportadora>        
-            <servico>(Dinheiro ou Cartão)</servico>         
-            <transporte>Moto</transporte>         
-            <valor>10.99</valor>         
-            <peso></peso>         
-            <prazo_min>1 Minuto</prazo_min>         
-            <prazo_max>2 Horas</prazo_max>         
-            </resultado>
-          </cotacao>
-        `;
-
-        return response.status(200).send(xml);
-      }
     } else {
       try {
         let distance = 0;
@@ -63,7 +46,7 @@ class ShippingController {
         const shippingCost = calculateShippingCost(distance);
 
         if (shippingCost !== 0) {
-          if (token === tokenValue){
+
             const xml = `
               <cotacao>
                 <resultado>         
@@ -78,26 +61,7 @@ class ShippingController {
                 </resultado>
               </cotacao>
             `;
-
             return response.status(200).send(xml);
-          } else {
-            const xml = `
-              <cotacao>
-                <resultado>         
-                <codigo></codigo>         
-                <transportadora>Pagar na Entrega</transportadora>        
-                <servico>(Dinheiro ou Cartão)</servico>         
-                <transporte>Moto</transporte>         
-                <valor>${shippingCost}</valor>         
-                <peso></peso>         
-                <prazo_min>1 Minuto</prazo_min>         
-                <prazo_max>2 Horas</prazo_max>         
-                </resultado>
-              </cotacao>
-            `;
-
-            return response.status(200).send(xml);
-          }
         }
 
         return response.status(400).json({ message: "Distância excedeu o limite do delivery" });
