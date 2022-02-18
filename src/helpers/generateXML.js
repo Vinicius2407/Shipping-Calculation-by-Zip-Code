@@ -5,7 +5,7 @@ export function generateXML(data) {
             <resultado>         
             <codigo></codigo>         
             <transportadora>Pagar Online</transportadora>        
-            <servico>(Cartão de Crédito ou PIX)</servico>         
+            <servico>(Pix ou Paypal)</servico>         
             <transporte>Moto</transporte>         
             <valor>${data}</valor>         
             <peso></peso>         
