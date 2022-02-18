@@ -12,8 +12,18 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "google-distance-matrix": "^1.1.1",
-    "node": "^17.4.0"
+    "node": "^17.4.0",
+    "yarn": "^1.22.17"
   },
-  "repository": "https://github.com/FozDelivery/TrayApi-Original.git",
-  "author": "Vinicius Silva Pereira <viniciussilvapereira24@gmail.com>"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FozDelivery/TrayApi-Original.git"
+  },
+  "author": "Vinicius Silva Pereira <viniciussilvapereira24@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/FozDelivery/TrayApi-Original/issues"
+  },
+  "homepage": "https://github.com/FozDelivery/TrayApi-Original#readme",
+  "keywords": [],
+  "description": ""
 }
