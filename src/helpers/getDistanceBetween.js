@@ -7,7 +7,7 @@ distance.key(apiKey);
 export async function getDistanceBetween(origins, destinations) {
   const distanceValue = await new Promise((resolve, reject) => {
     distance.matrix(origins, destinations, (error, distances) => {
-      
+
       if (!error) {
         if (distances.error_message) {
           return reject(distances.error_message);
@@ -15,11 +15,16 @@ export async function getDistanceBetween(origins, destinations) {
 
         for (const row of distances.rows) {
           if (!row) {
+            
             return reject("Um ou mais endereços não encontrados");
           }
           for (const element of row.elements) {
             if (element.status === "OK") {
-              return resolve(element.distance.value);
+              return resolve(
+                {
+                  distancia: element.distance.value,
+                  tempo: element.duration.value
+                });
             } else {
               return reject("Erro interno ao calcular distância");
             }

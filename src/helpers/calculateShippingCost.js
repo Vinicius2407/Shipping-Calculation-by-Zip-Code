@@ -1,5 +1,5 @@
 export function calculateShippingCost(distance) {
-  const distanceInKilometers = distance / 1000;
+  const distanceInKilometers = distance.distancia / 1000;
 
   let shippingCost = 0;
 

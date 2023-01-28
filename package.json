@@ -25,5 +25,8 @@
   },
   "homepage": "https://github.com/FozDelivery/TrayApi-Original#readme",
   "keywords": [],
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }

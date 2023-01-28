@@ -4,6 +4,6 @@ import shippingController from "./controller/shipping.controller.js";
 
 const router = Router();
 
-router.get("/cotacao", shippingController.generateXML);
+router.get("/cep", shippingController.generateJSON);
 
 export { router };
