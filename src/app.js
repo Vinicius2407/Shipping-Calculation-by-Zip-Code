@@ -10,4 +10,4 @@ app.use("/frete", router);
 
 const port = process.env.PORT || 3333;
 
-app.listen(port, () => console.log(`\nServer listening on http://localhost:${port},\n`));
+app.listen(port, () => console.log(`\nServer listening on http://localhost:${port}`));

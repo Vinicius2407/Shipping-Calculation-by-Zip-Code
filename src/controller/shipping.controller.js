@@ -26,8 +26,9 @@ class ShippingController {
 
       if (shippingCost !== 0) {
         const json = {
-          "valorDoFrete": shippingCost,
-          "tempoParaEntrega": distance.tempo / 60
+          distancia: (distance.distancia / 1000).toFixed(1),
+          valorDoFrete: shippingCost,
+          tempoParaEntrega: (distance.tempo / 60).toFixed(2)
         }
 
         return response.status(200).send(json);
